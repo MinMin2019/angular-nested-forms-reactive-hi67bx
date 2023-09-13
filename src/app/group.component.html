@@ -1,0 +1,25 @@
+<h2>Group</h2>
+<div [formGroup]="parentForm">
+  <input formControlName="id" />
+  <input formControlName="name" />
+
+  <div formArrayName="attributes">
+    <div *ngFor="let attribute of getAttributesFor();let attributeIndex=index;">
+      <h3>Attribute</h3>
+       <div [formGroupName]="attributeIndex">
+        <input formControlName="name" />
+        <input formControlName="contentid" />
+        <input formControlName="value" />
+        <input formControlName="translationvalue" />
+        <input formControlName="placeholder" />
+        <input formControlName="label" />
+        <input formControlName="defaultvalue" />
+        <input formControlName="type" />
+        <input formControlName="element" />
+        <input formControlName="altered" />
+        <input formControlName="translation_id" />
+        <input formControlName="isnew" />
+      </div>
+    </div>
+  </div> 
+</div>

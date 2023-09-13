@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+  <h1>Course</h1>
+  <input type="text" formControlName="lessoncode" />
+  <input type="text" formControlName="countrycode" />
+  <input type="text" formControlName="languagecode" />
+
+  <div formArrayName="tasks">
+    <div *ngFor="let task of tasks;let taskIndex=index;">
+      <h2>Tasks</h2>
+      <div [formGroupName]="taskIndex">
+        <input formControlName="taskid" />
+        <input formControlName="taskname" />
+        <div><br/><button (click)="addDictionary(taskIndex)">Add Dictionary</button></div>
+        <div formArrayName="dictionary">
+          <div *ngFor="let dict of getDictionaryFor(taskIndex); let dictIndex=index;">
+             <app-dict [parentForm]="dict"></app-dict>
+          </div>
+        </div>
+        <div formArrayName="groups">
+          <div *ngFor="let group of getGroupsFor(taskIndex);let groupIndex=index;">
+            <app-group [formmain]="form" [parentForm]="group" [taskIndex]="taskIndex" [groupIndex]="groupIndex"></app-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<pre> {{ form.getRawValue() | json }} </pre>
